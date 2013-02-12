@@ -1,4 +1,4 @@
 module.exports = {
     Request: require('./lib/request'),
-    Reponse: require('./lib/response')
+    Response: require('./lib/response')
 };
