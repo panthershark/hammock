@@ -1,0 +1,23 @@
+{
+  "name": "hammock",
+  "version": "0.0.0",
+  "description": "Node.js mock / polyfill http object library for http req / res",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tommydudebreaux/hammock.git"
+  },
+  "keywords": [
+    "node",
+    "mock",
+    "http",
+    "request",
+    "response",
+    "polyfill"
+  ],
+  "author": "Tommy Messbauer",
+  "license": "MIT"
+}
