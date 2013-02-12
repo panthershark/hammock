@@ -11,7 +11,7 @@ Polyfill req / res for testing w/o http or for code generation from an existing 
 Example
 =======
 
-```
+```js
 /* Should consider migrating to a factory so that people don't have to guess whether to use new or not */
 var MockRequest = require('hammock').Request,
     MockResponse = require('hammock').Response;
