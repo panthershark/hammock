@@ -1,6 +1,6 @@
 {
   "name": "hammock",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node.js mock / polyfill http object library for http req / res",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,11 @@
     "polyfill"
   ],
   "dependencies": {
-    "lodash": "1.0.1"
+    "lodash": "1.0.1",
+    "cookies": "*"
+  },
+  "devDependencies": {
+    "tap": "*"
   },
   "author": "Tommy Messbauer",
   "license": "MIT"
