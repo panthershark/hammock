@@ -1,5 +1,4 @@
-var tap = require('tap');
-var test = tap.test;
+var test = require('tape');
 var MockRequest = require('../index.js').Request;
 var MockResponse = require('../index.js').Response;
 var Cookies = require('cookies');
