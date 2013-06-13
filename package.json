@@ -4,7 +4,7 @@
   "description": "Node.js mock / polyfill http object library for http req / res",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "node ./tests/req.js"
   },
   "repository": {
     "type": "git",
