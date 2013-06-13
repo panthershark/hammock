@@ -19,10 +19,10 @@
     "polyfill"
   ],
   "dependencies": {
-    "cookies": "*"
+    "cookies": "~0.3.6"
   },
   "devDependencies": {
-    "tap": "*"
+    "tape": "~1.0.4"
   },
   "author": "Tommy Messbauer",
   "license": "MIT"
