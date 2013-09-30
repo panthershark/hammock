@@ -1,6 +1,6 @@
 {
   "name": "hammock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js mock / polyfill http object library for http req / res",
   "main": "index.js",
   "scripts": {
