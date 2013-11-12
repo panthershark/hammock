@@ -27,7 +27,8 @@ test('Create  post request', function(t) {
   t.equal(bar, 'baz', 'Cookie (bar) should return the original value.');
 
   req.on('data', function(body) {
-    t.equals(body, 'foobar', 'Body should have been pushed from mock req.');
+    var strbody = body.toString('ascii');
+    t.equals(strbody, 'foobar', 'Body should have been pushed from mock req.');
     t.end();
   });
 
