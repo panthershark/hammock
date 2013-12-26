@@ -19,7 +19,8 @@
     "polyfill"
   ],
   "dependencies": {
-    "cookies": "~0.3.6"
+    "cookies": "~0.3.6",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "tape": "~1.0.4"
