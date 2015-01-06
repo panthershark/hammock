@@ -4,7 +4,7 @@
   "description": "Node.js mock / polyfill http object library for http req / res",
   "main": "index.js",
   "scripts": {
-    "test": "node ./tests/*"
+    "test": "tape ./tests/*"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "lodash": "~2.4.1"
   },
   "devDependencies": {
-    "tape": "~1.0.4"
+    "tape": "^3.0.3"
   },
   "author": "Tommy Messbauer",
   "license": "MIT"

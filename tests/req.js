@@ -24,3 +24,16 @@ test('Create request with cookie', function(t) {
   t.end();
 
 });
+
+test('can create with cookie header', function (t) {
+  var req = new MockRequest({
+    headers: {
+      cookie: 's=foo'
+    }
+  });
+
+  t.ok(req);
+  t.equal(req.headers.cookie, 's=foo');
+
+  t.end();
+});
