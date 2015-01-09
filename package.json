@@ -20,8 +20,7 @@
   ],
   "dependencies": {
     "cookies": "~0.3.6",
-    "lodash": "~2.4.1",
-    "readable-stream": "~1.0.33"
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "tape": "^3.0.3"
