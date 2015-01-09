@@ -26,10 +26,14 @@ test('Create  post request', function(t) {
   t.equal(foo, 'bar', 'Cookie (foo) should return the original value.');
   t.equal(bar, 'baz', 'Cookie (bar) should return the original value.');
 
+  var _body = ''
   req.on('data', function(body) {
-    t.equals(body.toString(), 'foobar', 'Body should have been pushed from mock req.');
+    _body += body
+  })
+  req.once('end', function () {
+    t.equals(_body.toString(), 'foobar', 'Body should have been pushed from mock req.');
     t.end();
-  });
+  })
 
   req.write('foo');
   req.end('bar');
