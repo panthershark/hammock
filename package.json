@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "cookies": "~0.3.6",
-    "lodash": "~2.4.1",
+    "lodash": "^3.0.0",
     "readable-stream": "~1.0.33"
   },
   "devDependencies": {
