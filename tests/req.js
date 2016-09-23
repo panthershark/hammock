@@ -37,3 +37,57 @@ test('can create with cookie header', function (t) {
 
   t.end();
 });
+
+test('can write to response', function t(assert) {
+  var res = new MockResponse(onResponse);
+
+  res.write('foo');
+  res.write('bar');
+  res.end();
+
+  function onResponse(err, resp) {
+    assert.equal(resp.body, 'foobar');
+    assert.end();
+  }
+});
+
+test('can write buffers to response', function t(assert) {
+  var res = new MockResponse(onResponse);
+
+  res.write('foo');
+  res.write(new Buffer('bar'));
+  res.end();
+
+  function onResponse(err, resp) {
+    assert.equal(resp.body, 'foobar');
+    assert.end();
+  }
+});
+
+test('can write buffer to end()', function t(assert) {
+  var res = new MockResponse(onResponse);
+
+  res.end(new Buffer('foobar'));
+
+  function onResponse(err, resp) {
+    assert.equal(
+      resp.body.toString('hex'), new Buffer('foobar').toString('hex')
+    );
+    assert.end();
+  }
+})
+
+test('can write only buffers to response', function t(assert) {
+  var res = new MockResponse(onResponse);
+
+  res.write(new Buffer('foo'));
+  res.write(new Buffer('bar'));
+  res.end();
+
+  function onResponse(err, resp) {
+    assert.equal(
+      resp.body.toString('hex'), new Buffer('foobar').toString('hex')
+    );
+    assert.end();
+  }
+});
