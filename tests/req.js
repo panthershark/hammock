@@ -2,6 +2,7 @@ var test = require('tape');
 var MockRequest = require('../index.js').Request;
 var MockResponse = require('../index.js').Response;
 var Cookies = require('cookies');
+var PassThrough = require('stream').PassThrough;
 
 test('Create request with cookie', function(t) {
   var req = new MockRequest({
@@ -91,3 +92,36 @@ test('can write only buffers to response', function t(assert) {
     assert.end();
   }
 });
+
+test('can write only buffers to response with pipe', function t(assert) {
+  var res = new MockResponse(onResponse);
+
+  var stream = new PassThrough();
+  stream.write(new Buffer('foo'));
+  stream.write(new Buffer('bar'));
+  stream.pipe(res);
+  stream.end();
+
+  function onResponse(err, resp) {
+    assert.equal(
+      resp.body.toString('hex'), new Buffer('foobar').toString('hex')
+    );
+    assert.end();
+  }
+});
+
+test('can handle empty responses', function t(assert) {
+  var res = new MockResponse(onResponse);
+
+  var stream = new PassThrough();
+  stream.pipe(res);
+  stream.end();
+
+  function onResponse(err, resp) {
+    assert.deepEqual(resp.body, '');
+    assert.end();
+  }
+});
+
+
+
