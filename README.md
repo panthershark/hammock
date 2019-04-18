@@ -7,6 +7,7 @@ Node.js mock / polyfill http object library for http req / res.
 Polyfill req / res for testing w/o http or for code generation from an existing site. Since the purpose of this lib is mock req/res for testing, you probably want this as a dev dependency. I think I've used it in a production app for something like SSR or something, but it was unusual!!! 
 
 # Install Node (0.10+)
+This includes new releases (e.g. 0.10, 0.11, 0.12, iojs, 4, 5, 6, 7, 8, 9, 10, 11)
 
 ```
 npm install hammock --save-dev
