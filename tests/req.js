@@ -1,8 +1,10 @@
+'use strict';
+
 var test = require('tape');
 var MockRequest = require('../index.js').Request;
 var MockResponse = require('../index.js').Response;
 var Cookies = require('cookies');
-var PassThrough = require('stream').PassThrough;
+var PassThrough = require('readable-stream').PassThrough;
 
 test('Create request with cookie', function(t) {
   var req = new MockRequest({

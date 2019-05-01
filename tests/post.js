@@ -1,3 +1,5 @@
+'use strict';
+
 var test = require('tape');
 var MockRequest = require('../index.js').Request;
 var MockResponse = require('../index.js').Response;

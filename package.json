@@ -24,6 +24,8 @@
     "readable-stream": "^2.3.3"
   },
   "devDependencies": {
+    "nock": "^8.2.2",
+    "request": "^2.88.0",
     "tape": "^4.8.0"
   },
   "author": "Tommy Messbauer",
