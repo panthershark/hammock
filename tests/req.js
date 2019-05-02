@@ -2,11 +2,12 @@
 
 var test = require('tape');
 var MockRequest = require('../index.js').Request;
-var MockResponse = require('../index.js').Response;
 var Cookies = require('cookies');
 var PassThrough = require('readable-stream').PassThrough;
 
-test('Create request with cookie', function(t) {
+test('MockRequest: Create request with cookie', function (t) {
+  t.plan(3);
+
   var req = new MockRequest({
     url: '/hello',
     cookies: {
@@ -14,21 +15,21 @@ test('Create request with cookie', function(t) {
       bar: 'baz'
     }
   });
-  var res = new MockResponse();
 
   t.ok(req, 'Request was created');
 
-  var cookies = new Cookies(req, res);
+  var cookies = new Cookies(req);
   var foo = cookies.get('foo');
   var bar = cookies.get('bar');
 
   t.equal(foo, 'bar', 'Cookie (foo) should return the original value.');
   t.equal(bar, 'baz', 'Cookie (bar) should return the original value.');
   t.end();
-
 });
 
-test('can create with cookie header', function (t) {
+test('MockRequest: can create with cookie header', function (t) {
+  t.plan(2);
+
   var req = new MockRequest({
     headers: {
       cookie: 's=foo'
@@ -41,89 +42,27 @@ test('can create with cookie header', function (t) {
   t.end();
 });
 
-test('can write to response', function t(assert) {
-  var res = new MockResponse(onResponse);
+test('MockRequest: pipe to another stream', function (t) {
+  t.plan(1);
 
-  res.write('foo');
-  res.write('bar');
-  res.end();
+  var test_string = 'qweqwe';
+  var p = new PassThrough();
 
-  function onResponse(err, resp) {
-    assert.equal(resp.body, 'foobar');
-    assert.end();
-  }
+  p.on('data', function accumulate (d) {
+    t.equal(d.toString(), test_string);
+  });
+  p.on('end', function assertTest () {
+    t.end();
+  });
+
+  var req = new MockRequest({
+    headers: {
+      cookie: 's=foo'
+    }
+  });
+
+  req.pipe(p);
+
+  req.write(test_string);
+  req.end();
 });
-
-test('can write buffers to response', function t(assert) {
-  var res = new MockResponse(onResponse);
-
-  res.write('foo');
-  res.write(new Buffer('bar'));
-  res.end();
-
-  function onResponse(err, resp) {
-    assert.equal(resp.body, 'foobar');
-    assert.end();
-  }
-});
-
-test('can write buffer to end()', function t(assert) {
-  var res = new MockResponse(onResponse);
-
-  res.end(new Buffer('foobar'));
-
-  function onResponse(err, resp) {
-    assert.equal(
-      resp.body.toString('hex'), new Buffer('foobar').toString('hex')
-    );
-    assert.end();
-  }
-})
-
-test('can write only buffers to response', function t(assert) {
-  var res = new MockResponse(onResponse);
-
-  res.write(new Buffer('foo'));
-  res.write(new Buffer('bar'));
-  res.end();
-
-  function onResponse(err, resp) {
-    assert.equal(
-      resp.body.toString('hex'), new Buffer('foobar').toString('hex')
-    );
-    assert.end();
-  }
-});
-
-test('can write only buffers to response with pipe', function t(assert) {
-  var res = new MockResponse(onResponse);
-
-  var stream = new PassThrough();
-  stream.write(new Buffer('foo'));
-  stream.write(new Buffer('bar'));
-  stream.pipe(res);
-  stream.end();
-
-  function onResponse(err, resp) {
-    assert.equal(
-      resp.body.toString('hex'), new Buffer('foobar').toString('hex')
-    );
-    assert.end();
-  }
-});
-
-test('can handle empty responses', function t(assert) {
-  var res = new MockResponse(onResponse);
-
-  var stream = new PassThrough();
-  stream.pipe(res);
-  stream.end();
-
-  function onResponse(err, resp) {
-    assert.deepEqual(resp.body, '');
-    assert.end();
-  }
-});
-
-
-

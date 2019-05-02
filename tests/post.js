@@ -2,10 +2,9 @@
 
 var test = require('tape');
 var MockRequest = require('../index.js').Request;
-var MockResponse = require('../index.js').Response;
 var Cookies = require('cookies');
 
-test('Create  post request', function(t) {
+test('Create  post request', function (t) {
   var req = new MockRequest({
     method: 'POST',
     url: '/hello',
@@ -17,25 +16,25 @@ test('Create  post request', function(t) {
       bar: 'baz'
     }
   });
-  var res = new MockResponse();
 
   t.ok(req, 'Request was created');
 
-  var cookies = new Cookies(req, res);
+  var cookies = new Cookies(req);
   var foo = cookies.get('foo');
   var bar = cookies.get('bar');
 
   t.equal(foo, 'bar', 'Cookie (foo) should return the original value.');
   t.equal(bar, 'baz', 'Cookie (bar) should return the original value.');
 
-  var _body = ''
-  req.on('data', function(body) {
-    _body += body
-  })
+  var _body = '';
+
+  req.on('data', function (body) {
+    _body += body;
+  });
   req.once('end', function () {
     t.equals(_body.toString(), 'foobar', 'Body should have been pushed from mock req.');
     t.end();
-  })
+  });
 
   req.write('foo');
   req.end('bar');
