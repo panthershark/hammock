@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "cookies": "^0.7.1",
-    "readable-stream": "^3.3.0"
+    "readable-stream": "^2.3.3"
   },
   "devDependencies": {
     "nock": "^10.0.6",
