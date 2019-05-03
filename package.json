@@ -19,12 +19,13 @@
     "polyfill"
   ],
   "dependencies": {
-    "cookies": "^0.7.1",
-    "lodash": "^4.17.4",
-    "readable-stream": "^2.3.3"
+    "cookies": "0.7.3",
+    "readable-stream": "2.3.3"
   },
   "devDependencies": {
-    "tape": "^4.8.0"
+    "nock": "8.2.2",
+    "request": "2.88.0",
+    "tape": "4.8.0"
   },
   "author": "Tommy Messbauer",
   "license": "MIT"
