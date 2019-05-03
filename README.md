@@ -1,4 +1,4 @@
-# hammock
+# hammock.  [![Build Status](https://travis-ci.org/doanythingfordethklok/hammock.svg?branch=master)](https://travis-ci.org/doanythingfordethklok/hammock)
 
 Node.js mock / polyfill http object library for http req / res.  
 
